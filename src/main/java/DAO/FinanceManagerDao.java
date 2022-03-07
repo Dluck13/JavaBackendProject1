@@ -46,7 +46,7 @@ public class FinanceManagerDao {
 				r.setDate_submitted(results.getString(10));
 				r.setDateOfTransaction(results.getString(11));
 				r.setDate_updated(results.getString(12));
-				r.setType(results.getString(6));
+				r.setExpenseType(results.getString(6));
 				r.setEmployeeID(results.getInt(3));
 				riems.add(r);
 			}
@@ -80,7 +80,7 @@ public class FinanceManagerDao {
 				r.setDate_submitted(results.getString(11));
 				r.setDateOfTransaction(results.getString(10));
 				r.setDate_updated(results.getString(12));
-				r.setType(results.getString(6));
+				r.setExpenseType(results.getString(6));
 				r.setEmployeeID(results.getInt(3));
 				riems.add(r);
 			}
@@ -112,7 +112,7 @@ public class FinanceManagerDao {
 				r.setDate_submitted(results.getString(11));
 				r.setDateOfTransaction(results.getString(10));
 				r.setDate_updated(results.getString(12));
-				r.setType(results.getString(6));
+				r.setExpenseType(results.getString(6));
 				r.setEmployeeID(results.getInt(3));
 				riems.add(r);
 			}
@@ -144,7 +144,7 @@ public class FinanceManagerDao {
 				r.setDate_submitted(results.getString(11));
 				r.setDateOfTransaction(results.getString(10));
 				r.setDate_updated(results.getString(12));
-				r.setType(results.getString(6));
+				r.setExpenseType(query);;
 				r.setEmployeeID(results.getInt(3));
 				riems.add(r);
 			}
@@ -172,8 +172,12 @@ public class FinanceManagerDao {
 				e.setEmail(results.getString(3));
 				e.setPhone(results.getString(4));
 				e.setJobTitle(results.getString(5));
-
 				employees.add(e);
+				
+				// need to add select to get permissions
+				
+				
+				
 			}
 		}
 
@@ -185,7 +189,7 @@ public class FinanceManagerDao {
 		Reimbursement r = rUpdate;	
 	
 		String query = "select * from v_employees;";
-		CallableStatement st =  DBConnection.getConnection().prepareCall(query);
+		CallableStatement sit =  DBConnection.getConnection().prepareCall(query);
 		ResultSet results = null;
 
 		results = st.executeQuery();

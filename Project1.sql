@@ -7,11 +7,11 @@ drop procedure if exists  approve_request;
 --drops view
 drop view if exists all_reimbursements;
 drop view if exists v_employees;
-
+drop view if exists v_employee_permissions;
 
 -- drops tables
 drop table if exists reimbursement_updates;
-drop table if exists emplyee_permissions;
+drop table if exists employee_permissions;
 drop table if exists reimbursements;
 drop table if exists employees; 
 drop table if exists job_titles;
@@ -59,7 +59,7 @@ Create Table permissions (
 
 -- cant have the same employee to permission twice, can use seperate table + tracker variables to keep track of
 -- of when employees gain and lose employees which is out of scope
-Create Table emplyee_permissions(
+Create Table employee_permissions(
 	employee_permission_id 	Integer generated always as identity,
 	employee_id 			Integer not null,
 	permission_id			Integer not null,
@@ -91,6 +91,7 @@ Create Table reimbursements(
 	date_of_transaction	date	not null,
 	amount				numeric	not null,
 	details				varchar(200),
+	merchant			varchar(30),
 	primary key(reimbursement_id),
 	Constraint fk_reimbursements_reimbursement_types Foreign Key(type_id) References reimbursement_types(type_id),
 	Constraint fk_reimbursements_employees Foreign Key(employee_id) References employees(employee_id),
@@ -148,7 +149,7 @@ insert into employees(employee_id, job_title_id,first_name,last_name,email,phone
 			(4,1,'mr','manager','mr.manager@busness.com','(123) 123-4567','4','4');
 
 
-insert into emplyee_permissions(employee_id, permission_id)
+insert into employee_permissions(employee_id, permission_id)
 	values	(4,2),
 			(1,1),
 			(2,1),
@@ -181,7 +182,7 @@ insert into reimbursement_updates(reimbursement_id,status_id,date_of_update,upda
 -- Views
 -------------------------------------------------
 -- gets all reimbursements and all relevent information from them.
-create view all_reimbursements(db_reimbursement_id,db_status_id,db_employee_id,employee,status,r_type,amount,details,current_comment,date_of_transaction,date_submited,date_of_update)
+create view all_reimbursements(db_reimbursement_id,db_status_id,db_employee_id,employee,status,r_type,amount,details,current_comment,date_of_transaction,date_submited,date_of_update,merchant)
 	as select 
 		reimbursements.reimbursement_id as db_reimbursement_id, 
 		reimbursements.status_id	as db_status_id,
@@ -194,7 +195,8 @@ create view all_reimbursements(db_reimbursement_id,db_status_id,db_employee_id,e
 		current_update.update_comment as current_comment,
 		reimbursements.date_of_transaction as date_of_transaction,
 		initial_update.date_of_update as date_submitted,
-		current_update.date_of_update as date_of_update
+		current_update.date_of_update as date_of_update,
+		reimbursements.merchant
 	from reimbursements
 	inner join reimbursement_statuss 
 	on reimbursements.status_id = reimbursement_statuss.status_id
@@ -220,8 +222,12 @@ create view v_employees(employee_id,full_name,email,phone,job_title)
 	inner join job_titles
 	on employees.job_title_id = job_titles.job_title_id;
 	
-	
-	
+create view v_employee_permissions(employee_id,permission_id,permission_type)
+	as select employee_id, permissions.permission_id, permission_type
+	from permissions
+	inner join employee_permissions
+	on permissions.permission_id = employee_permissions.permission_id;
+
 	
 
 -------------------------------------------------

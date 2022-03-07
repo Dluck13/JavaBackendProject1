@@ -8,7 +8,8 @@ public class Reimbursement {
 	int employeeID = 0;
 	String employee = "";
 	String status = "";
-	String type = "";
+	String expenseType = "";
+	String merchant = "";
 	BigDecimal amount = BigDecimal.ZERO;
 	String details = "";
 	String currentComment = "";
@@ -46,11 +47,11 @@ public class Reimbursement {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getType() {
-		return type;
+	public String getExpenseType () {
+		return expenseType;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setExpenseType (String type) {
+		this.expenseType = type;
 	}
 	public BigDecimal getAmount() {
 		return amount;
