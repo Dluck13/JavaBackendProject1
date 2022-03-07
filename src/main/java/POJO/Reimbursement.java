@@ -10,6 +10,7 @@ public class Reimbursement {
 	String status = "";
 	String expenseType = "";
 	String merchant = "";
+
 	BigDecimal amount = BigDecimal.ZERO;
 	String details = "";
 	String currentComment = "";
@@ -88,6 +89,12 @@ public class Reimbursement {
 	}
 	public void setDate_updated(String date_updated) {
 		this.date_updated = date_updated;
+	}
+	public String getMerchant() {
+		return merchant;
+	}
+	public void setMerchant(String merchant) {
+		this.merchant = merchant;
 	}
 	
 }

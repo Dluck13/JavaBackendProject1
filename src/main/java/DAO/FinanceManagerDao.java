@@ -5,6 +5,7 @@ import org.postgresql.util.*;
 import DAO.DBConnection;
 import POJO.Employee;
 import POJO.Reimbursement;
+import POJO.Role;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -90,7 +91,7 @@ public class FinanceManagerDao {
 	}
 
 	public static LinkedList<Reimbursement> getAllReimbursements() throws SQLException {
-		log.info("in getPendingReinbursements Dao Layer");
+		log.info("in getAllReinbursements Dao Layer");
 		LinkedList<Reimbursement> riems = new LinkedList<Reimbursement>();	
 	
 		String query = "select * from all_reimbursements;";
@@ -122,7 +123,7 @@ public class FinanceManagerDao {
 	}
 
 	public static LinkedList<Reimbursement> getEmployeeReimbursements(int employee) throws SQLException {
-		log.info("in getPendingReinbursements Dao Layer");
+		log.info("in getEmployeeReimbersements Dao Layer");
 		LinkedList<Reimbursement> riems = new LinkedList<Reimbursement>();	
 	
 		String query = "select * from all_reimbursements where db_employee_id = " + employee + ";";
@@ -154,7 +155,7 @@ public class FinanceManagerDao {
 	}
 
 	public static LinkedList<Employee> getAllEmployees() throws SQLException {
-		log.info("in getPendingReinbursements Dao Layer");
+		log.info("in getAllEmployees Dao Layer");
 		LinkedList<Employee> employees = new LinkedList<Employee>();	
 	
 		String query = "select * from v_employees;";
@@ -172,6 +173,7 @@ public class FinanceManagerDao {
 				e.setEmail(results.getString(3));
 				e.setPhone(results.getString(4));
 				e.setJobTitle(results.getString(5));
+				e.setRoles(getRoles(results.getInt(1)));
 				employees.add(e);
 				
 				// need to add select to get permissions
@@ -183,7 +185,40 @@ public class FinanceManagerDao {
 
 		return employees;
 	}
+	
+	
+	// this can be put in a shared class, but class assignment....
+	public static LinkedList<Role> getRoles(int employeeID) throws SQLException
+	{
+		
+		log.info("in getRoles Dao Layer");
+		LinkedList<Role> roles = new LinkedList<Role>();	
+	
+		String query = "select permission_id,permission_type from v_employee_permissions where employee_id= "+ employeeID+";";
+		CallableStatement st =  DBConnection.getConnection().prepareCall(query);
+		ResultSet results = null;
 
+		results = st.executeQuery();
+		if(results != null)
+		{
+			while(results.next())
+			{
+				Role r = new Role();
+				r.setRoleID(results.getInt(1));
+				r.setRole(results.getString(2));
+				roles.add(r);
+
+			}
+		}
+
+		return roles;
+		
+		
+		
+		
+	}
+	
+	
 /*	public static Reimbursement updateReimbursement(Reimbursement rUpdate) {
 		log.info("in getPendingReinbursements Dao Layer");
 		Reimbursement r = rUpdate;	
