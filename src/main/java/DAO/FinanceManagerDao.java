@@ -44,11 +44,12 @@ public class FinanceManagerDao {
 				r.setEmployee(results.getString(4));
 				r.setCurrentComment(results.getString(9));
 				r.setDetails(results.getString(8));
-				r.setDate_submitted(results.getString(10));
+				r.setDateSubmitted(results.getString(10));
 				r.setDateOfTransaction(results.getString(11));
-				r.setDate_updated(results.getString(12));
+				r.setDateUpdated(results.getString(12));
 				r.setExpenseType(results.getString(6));
 				r.setEmployeeID(results.getInt(3));
+				r.setStatusID(results.getInt(2));
 				riems.add(r);
 			}
 		}
@@ -78,11 +79,13 @@ public class FinanceManagerDao {
 				r.setEmployee(results.getString(4));
 				r.setCurrentComment(results.getString(9));
 				r.setDetails(results.getString(8));
-				r.setDate_submitted(results.getString(11));
+				r.setDateSubmitted(results.getString(11));
 				r.setDateOfTransaction(results.getString(10));
-				r.setDate_updated(results.getString(12));
+				r.setDateUpdated(results.getString(12));
 				r.setExpenseType(results.getString(6));
 				r.setEmployeeID(results.getInt(3));
+				r.setMerchant(results.getString(13));	
+				r.setStatusID(results.getInt(2));
 				riems.add(r);
 			}
 		}
@@ -110,11 +113,13 @@ public class FinanceManagerDao {
 				r.setEmployee(results.getString(4));
 				r.setCurrentComment(results.getString(9));
 				r.setDetails(results.getString(8));
-				r.setDate_submitted(results.getString(11));
+				r.setDateSubmitted(results.getString(11));
 				r.setDateOfTransaction(results.getString(10));
-				r.setDate_updated(results.getString(12));
+				r.setDateUpdated(results.getString(12));
 				r.setExpenseType(results.getString(6));
 				r.setEmployeeID(results.getInt(3));
+				r.setMerchant(results.getString(13));
+				r.setStatusID(results.getInt(2));
 				riems.add(r);
 			}
 		}
@@ -142,11 +147,13 @@ public class FinanceManagerDao {
 				r.setEmployee(results.getString(4));
 				r.setCurrentComment(results.getString(9));
 				r.setDetails(results.getString(8));
-				r.setDate_submitted(results.getString(11));
+				r.setDateSubmitted(results.getString(11));
 				r.setDateOfTransaction(results.getString(10));
-				r.setDate_updated(results.getString(12));
+				r.setDateUpdated(results.getString(12));
 				r.setExpenseType(query);;
 				r.setEmployeeID(results.getInt(3));
+				r.setMerchant(results.getString(13));
+				r.setStatusID(results.getInt(2));
 				riems.add(r);
 			}
 		}
@@ -219,30 +226,18 @@ public class FinanceManagerDao {
 	}
 	
 	
-/*	public static Reimbursement updateReimbursement(Reimbursement rUpdate) {
+	public static Reimbursement updateReimbursement(Reimbursement rUpdate) throws SQLException  {
 		log.info("in getPendingReinbursements Dao Layer");
 		Reimbursement r = rUpdate;	
 	
-		String query = "select * from v_employees;";
-		CallableStatement sit =  DBConnection.getConnection().prepareCall(query);
-		ResultSet results = null;
+		String query =  "call approve_request(?,?,?);";
+		
+		PreparedStatement st = DBConnection.getConnection().prepareStatement(query);
+		st.setInt(1, r.getReimbursementID());
+		st.setInt(2, r.getStatusID());
+		st.setString(3, r.getCurrentComment());
+		st.execute();
 
-		results = st.executeQuery();
-		if(results != null)
-		{
-			while(results.next())
-			{
-				Employee e = new Employee();
-				e.setEmployeeID(results.getInt(1));
-				e.setFullName(results.getString(2));
-				e.setEmail(results.getString(3));
-				e.setPhone(results.getString(4));
-				e.setJobTitle(results.getString(5));
-
-				employees.add(e);
-			}
-		}
-
-		return employees;
-	}*/
+		return r;
+	}
 }

@@ -36,10 +36,10 @@ public class Project1Main {
 		});
 		
 		// what is the practical difference between post/put my post both inserts and updates a table.
-/*		myServer.post("/UpdateRequest", (ctx)->{
+		myServer.post("/UpdateRequest", (ctx)->{
 			Reimbursement rUpdate = ctx.bodyAsClass(Reimbursement.class);
 			ctx.json(FinanceManagerService.updateReimbursement(rUpdate));
-		});*/
+		});
 	}
 
 }

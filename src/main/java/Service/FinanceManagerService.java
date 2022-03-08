@@ -65,13 +65,13 @@ public class FinanceManagerService {
 		}
 		
 	}
-/*	public static Reimbursement updateReimbursement(Reimbursement rUpdate) {
+	public static Reimbursement updateReimbursement(Reimbursement rUpdate) {
 		try {
 			return FinanceManagerDao.updateReimbursement(rUpdate);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			return new Reimbursement();
 		}
-	}*/
+	}
 	
 }

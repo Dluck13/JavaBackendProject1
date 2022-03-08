@@ -155,13 +155,13 @@ insert into employee_permissions(employee_id, permission_id)
 			(2,1),
 			(3,1);
 	
-insert into reimbursements(employee_id,status_id,type_id,date_of_transaction,amount,details)
-	values	(2,4,1,'2020-01-10',150,'hotel'),
-			(2,4,1,'2020-01-10',30,'gas'),
-			(2,5,1,'2020-01-10',300,'fancy restraunt'),
-			(1,4,4,'2020-02-25',1200,'ohh new machinery'),
-			(1,1,5,'2020-02-26',3000,'worker injury compensation hospital visit'),
-			(3,1,3,'2020-02-27',140,'replace broken chair');
+insert into reimbursements(employee_id,status_id,type_id,date_of_transaction,amount,details,merchant)
+	values	(2,4,1,'2020-01-10',150,'hotel','mariot'),
+			(2,4,1,'2020-01-10',30,'gas','speedway'),
+			(2,5,1,'2020-01-10',300,'fancy restraunt','food place'),
+			(1,4,4,'2020-02-25',1200,'ohh new machinery','Bobs hardware'),
+			(1,1,5,'2020-02-26',3000,'worker injury compensation hospital visit','hospital'),
+			(3,1,3,'2020-02-27',140,'replace broken chair','furniture place');
 
 
 insert into reimbursement_updates(reimbursement_id,status_id,date_of_update,update_comment)

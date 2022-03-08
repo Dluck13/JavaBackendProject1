@@ -15,8 +15,8 @@ public class Reimbursement {
 	String details = "";
 	String currentComment = "";
 	String dateOfTransaction = "";
-	String date_submitted = "";
-	String date_updated = "";
+	String dateSubmitted = "";
+	String dateUpdated = "";
 	
 	public int getReimbursementID() {
 		return reimbursementID;
@@ -78,17 +78,17 @@ public class Reimbursement {
 	public void setDateOfTransaction(String dateOfTransaction) {
 		this.dateOfTransaction = dateOfTransaction;
 	}
-	public String getDate_submitted() {
-		return date_submitted;
+	public String getDateSubmitted() {
+		return dateSubmitted;
 	}
-	public void setDate_submitted(String date_submitted) {
-		this.date_submitted = date_submitted;
+	public void setDateSubmitted(String date_submitted) {
+		this.dateSubmitted = date_submitted;
 	}
-	public String getDate_updated() {
-		return date_updated;
+	public String getDateUpdated() {
+		return dateUpdated;
 	}
-	public void setDate_updated(String date_updated) {
-		this.date_updated = date_updated;
+	public void setDateUpdated(String date_updated) {
+		this.dateUpdated = date_updated;
 	}
 	public String getMerchant() {
 		return merchant;
