@@ -58,14 +58,13 @@ public class Project1Main {
 		
 		// all employees
 		myServer.get("/AllEmployees", (ctx)->{
-			List<Employee> allEmployees = employeeService.fetchAllEmployees();
-			ctx.json(allEmployees);
+		ctx.json(employeeService.fetchAllEmployees());
 		});
 		
 		//fetch employee
 		myServer.get("/FetchEmployee/{employee_id}", (ctx)->{
 			//retrieve the path param value,specify path param key
-			String empId = ctx.pathParam("empid");
+			String empId = ctx.pathParam("employee_id");
 			//tell service layer to fetch employee
 			Employee fetchedEmployee = employeeService.fetchAEmployee(Integer.parseInt(empId));
 			//return
@@ -74,7 +73,7 @@ public class Project1Main {
 		//delete an employee
 		myServer.delete("/DeleteEmployees/{employee_id}", (ctx)->{
 			//retrieve the path param value,specify path param key
-			String empId = ctx.pathParam("empid");
+			String empId = ctx.pathParam("employee_id");
 			//tell service layer to delete
 			Employee deletedEmp = employeeService.deleteEmployee(Integer.parseInt(empId));
 			//return 

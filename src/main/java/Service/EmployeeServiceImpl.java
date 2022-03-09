@@ -2,6 +2,7 @@ package Service;
 
 import java.io.FileNotFoundException;
 import java.nio.file.FileSystemException;
+import java.sql.SQLException;
 import java.util.List;
 
 import DAO.EmployeeDao;
@@ -17,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> fetchAllEmployees() throws FileSystemException, FileNotFoundException {
+	public List<Employee> fetchAllEmployees() throws FileSystemException {
 		// TODO Auto-generated method stub
 		return employeeDao.fetchAllEmployees();
 	}

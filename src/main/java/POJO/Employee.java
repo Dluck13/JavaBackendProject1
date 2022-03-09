@@ -21,26 +21,6 @@ public class Employee {
 	String password = "";
 	
 	
-	public Employee() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	public Employee(String firstName, String lastName, String fullName, int employeeID, String email, String phone,
-			String jobTitle, String userName, String password) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.fullName = fullName;
-		this.employeeID = employeeID;
-		this.email = email;
-		this.phone = phone;
-		this.jobTitle = jobTitle;
-		this.userName = userName;
-		this.password = password;
-	}
-
 
 	public String getFirstName() {
 		return firstName;

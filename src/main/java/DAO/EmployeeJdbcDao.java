@@ -1,5 +1,7 @@
 package DAO;
 
+import java.nio.file.ClosedFileSystemException;
+import java.nio.file.FileSystemException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +19,7 @@ public class EmployeeJdbcDao implements EmployeeDao {
 	public static final Logger LOG = LogManager.getLogger(EmployeeJdbcDao.class);
 
 	@Override
-	public List<Employee> fetchAllEmployees() throws SQLException, ClassNotFoundException {
+	public List<Employee> fetchAllEmployees() throws FileSystemException {
 		LOG.info("Entered fetchAllEmployees() in DAO");
 		// create an array list to hold all the employees info fetched from the DB
 		List<Employee> allEmployees = new ArrayList<Employee>();
@@ -26,29 +28,26 @@ public class EmployeeJdbcDao implements EmployeeDao {
 		try {
 			Statement stmt = conn.createStatement();
 			String query = "SELECT * FROM employees";
-			ResultSet rs = stmt.executeQuery(query);
+			ResultSet results = stmt.executeQuery(query);
 			// iterate through the result set 
-			while(rs.next()) {
+			while(results.next()) {
 				//copy each record into a employeePojo object 
-				Employee employeePojo = new Employee(
-						rs.getString(1), 
-						rs.getString(2), 
-						rs.getString(3), 
-						rs.getInt(4), 
-						rs.getString(5), 
-						rs.getString(6),
-						rs.getString(7),
-						rs.getString(8),
-						rs.getString(9)
-						);
+				Employee employeePojo = new Employee();
+				employeePojo.setEmployeeID(results.getInt(1));
+				employeePojo.setJobTitle(results.getString(2));
+				employeePojo.setFullName(results.getString(3));
+				employeePojo.setEmail(results.getString(4));
+				employeePojo.setPhone(results.getString(5));
+						
+					
 				// add the employeePojo object to the collection
 				allEmployees.add(employeePojo);
 			}
 		} catch (SQLException e) {
-			throw new SQLException();
+			throw new ClosedFileSystemException();
 		}
 		if(allEmployees.isEmpty()) {
-			throw new SQLException();
+			throw new ClosedFileSystemException();
 		}
 		
 		LOG.info("Exited fetchAllEmployees() in DAO");
@@ -57,7 +56,7 @@ public class EmployeeJdbcDao implements EmployeeDao {
 	}
 
 	@Override
-	public Employee addEmployee(Employee employee) throws SQLException {
+	public Employee addEmployee(Employee employee) throws FileSystemException {
 		LOG.info("Entered addEmployee() in DAO");
 		Connection conn = DBConnection.getConnection();
 		try {
@@ -69,7 +68,7 @@ public class EmployeeJdbcDao implements EmployeeDao {
 			}
 			
 		} catch (SQLException e) {
-			throw new SQLException();
+			throw new ClosedFileSystemException();
 		}
 		LOG.info("Exited addEmployee() in DAO");
 		return employee;
@@ -78,7 +77,7 @@ public class EmployeeJdbcDao implements EmployeeDao {
 	}
 
 	@Override
-	public Employee updateEmployee(Employee employee) throws SQLException {
+	public Employee updateEmployee(Employee employee) throws FileSystemException {
 		LOG.info("Entered updateEmployee() in DAO");
 		Connection conn = DBConnection.getConnection();
 		try {
@@ -86,14 +85,14 @@ public class EmployeeJdbcDao implements EmployeeDao {
 			String query = "UPDATE employees SET email='"+employee.getEmail()+"' WHERE employee_id="+employee.getEmployeeID();
 			int rows = stmt.executeUpdate(query);
 		} catch (SQLException e) {
-			throw new SQLException();
+			throw new ClosedFileSystemException();
 		}
 		LOG.info("Exited updateBook() in DAO");
 		return employee;
 	}
 
 	@Override
-	public Employee deleteEmployee(int employeeID) throws SQLException {
+	public Employee deleteEmployee(int employeeID) throws FileSystemException {
 		LOG.info("Entered deleteEmployee() in DAO");
 		Employee employeePojo = null;
 		Connection conn = DBConnection.getConnection();
@@ -103,14 +102,14 @@ public class EmployeeJdbcDao implements EmployeeDao {
 			String query = "DELETE FROM employees WHERE employee_id="+employeeID;
 			int rows = stmt.executeUpdate(query);
 		} catch (SQLException e) {
-			throw new SQLException();
+			throw new ClosedFileSystemException();
 		}
 		LOG.info("Exited deleteEmployee() in DAO");
 		return employeePojo;
 	}
 
 	@Override
-	public Employee fetchAEmployee(int employeeID) throws SQLException {
+	public Employee fetchAEmployee(int employeeID) throws FileSystemException {
 		LOG.info("Entered fetchABook() in DAO");
 		Employee employeePojo = null;
 		Connection conn = DBConnection.getConnection();
@@ -118,22 +117,17 @@ public class EmployeeJdbcDao implements EmployeeDao {
 		try {
 			Statement stmt = conn.createStatement();
 			String query = "SELECT * FROM employees WHERE employee_id="+employeeID;
-			ResultSet rs = stmt.executeQuery(query);
-			if(rs.next()) {
-				employeePojo = new Employee(
-						rs.getString(1), 
-						rs.getString(2), 
-						rs.getString(3), 
-						rs.getInt(4), 
-						rs.getString(5), 
-						rs.getString(6),
-						rs.getString(7),
-						rs.getString(8),
-						rs.getString(9)
-						);
+			ResultSet results = stmt.executeQuery(query);
+			if(results.next()) {
+						Employee fetchEmp = new Employee();
+						fetchEmp.setEmployeeID(results.getInt(1));
+						fetchEmp.setJobTitle(results.getString(2));
+						fetchEmp.setFullName(results.getString(3));
+						fetchEmp.setEmail(results.getString(4));
+						fetchEmp.setPhone(results.getString(5));
 			}
 		} catch (SQLException e) {
-			throw new SQLException();
+			throw new ClosedFileSystemException();
 		}
 		LOG.info("Exited fetchAEmployee() in DAO");
 		return employeePojo;
