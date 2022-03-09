@@ -2,12 +2,13 @@
 
 --drops procedures
 drop procedure if exists  approve_request;
-
+drop procedure if exists  employee_login;
 
 --drops view
 drop view if exists all_reimbursements;
 drop view if exists v_employees;
 drop view if exists v_employee_permissions;
+drop view if exists v_employee_login;
 
 -- drops tables
 drop table if exists reimbursement_updates;
@@ -124,8 +125,8 @@ insert into job_titles(job_title_id, job_title)
 
 -- only reimbursment approve included atm, can add permission to claim reimbursment as well
 insert into permissions(permission_id,permission_type)
-	values	(1,'standard employee'), -- not giving to the finance manager atm, unless we allow finance manager to make and approve their own reimbursments
-			(2,'reimbursment approval');
+	values	(0,'standard employee'), -- not giving to the finance manager atm, unless we allow finance manager to make and approve their own reimbursments
+			(1,'reimbursment approval');
 	
 
 insert into reimbursement_statuss(status_id, status)
@@ -150,10 +151,10 @@ insert into employees(employee_id, job_title_id,first_name,last_name,email,phone
 
 
 insert into employee_permissions(employee_id, permission_id)
-	values	(4,2),
-			(1,1),
-			(2,1),
-			(3,1);
+	values	(4,1),
+			(1,0),
+			(2,0),
+			(3,0);
 	
 insert into reimbursements(employee_id,status_id,type_id,date_of_transaction,amount,details,merchant)
 	values	(2,4,1,'2020-01-10',150,'hotel','mariot'),
@@ -211,7 +212,7 @@ create view all_reimbursements(db_reimbursement_id,db_status_id,db_employee_id,e
 	on	reimbursements.reimbursement_id = initial_update.reimbursement_id 
 	and initial_update.status_id = 1;
 	
-
+	-- view for viewing employees
 create view v_employees(employee_id,full_name,email,phone,job_title)
 	as select employee_id, 
 	concat(employees.first_name, ' ',employees.last_name) as full_name, 
@@ -227,6 +228,22 @@ create view v_employee_permissions(employee_id,permission_id,permission_type)
 	from permissions
 	inner join employee_permissions
 	on permissions.permission_id = employee_permissions.permission_id;
+	
+	
+	-- view for login relevant info
+create view v_employee_login(employee_id,full_name,email,phone,job_title,first_name,last_name,user_name,user_password)
+	as select employee_id, 
+	concat(employees.first_name, ' ',employees.last_name) as full_name, 
+	email,
+	phone,
+	job_title,
+	first_name,
+	last_name,
+	user_name,
+	user_password
+	from employees
+	inner join job_titles
+	on employees.job_title_id = job_titles.job_title_id;
 
 	
 
@@ -247,6 +264,31 @@ $BODY$;
 ALTER PROCEDURE public.approve_request(integer, integer, character varying)
     OWNER TO postgres;
 
+
+CREATE PROCEDURE employee_login(IN u_name varchar(30), 
+								IN u_password varchar(30), 
+								out  first_name varchar(30),
+								out last_name varchar(30),
+								out full_name varchar(30),
+								out job_title varchar(30),
+								out email varchar(30),
+								out phone varchar(30),
+							   	out employee_id integer)
+LANGUAGE 'sql'
+AS $BODY$
+	select 
+		first_name,
+		last_name,
+		full_name,
+		job_title,
+		email,
+		phone,
+		employee_id
+	from v_employee_login
+	where u_name = user_name and u_password = user_password;
+$BODY$;
+ALTER PROCEDURE public.approve_request(integer, integer, character varying)
+    OWNER TO postgres;
 
 
 

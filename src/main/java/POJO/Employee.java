@@ -1,6 +1,7 @@
 package POJO;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Employee {
 	String firstName = "";
@@ -12,7 +13,7 @@ public class Employee {
 	String phone = "";
 	String jobTitle = "";
 	// permissions renamed roles so it doesn't match names with other stuff as much
-	LinkedList<Role> roles = new LinkedList<Role>();
+	List<Role> roles = new LinkedList<Role>();
 	
 	
 	// leave empty unless except for login
@@ -83,10 +84,10 @@ public class Employee {
 	public void setJobTitle(String jobTitle) {
 		this.jobTitle = jobTitle;
 	}
-	public LinkedList<Role> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
-	public void setRoles(LinkedList<Role> roles) {
+	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
 	public String getUserName() {

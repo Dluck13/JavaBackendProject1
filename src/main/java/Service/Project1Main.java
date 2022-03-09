@@ -1,5 +1,6 @@
 package Service;
 
+import POJO.Employee;
 import POJO.Reimbursement;
 import io.javalin.Javalin;
 
@@ -40,6 +41,14 @@ public class Project1Main {
 			Reimbursement rUpdate = ctx.bodyAsClass(Reimbursement.class);
 			ctx.json(FinanceManagerService.updateReimbursement(rUpdate));
 		});
+		
+		myServer.get("/Login", (ctx)->{
+			Employee e = ctx.bodyAsClass(Employee.class);
+			ctx.json(LoginService.login(e));
+		});
+		
+		
+		
 	}
 
 }
