@@ -1,8 +1,6 @@
 package DAO;
 
-import java.io.FileNotFoundException;
-import java.nio.file.ClosedFileSystemException;
-import java.nio.file.FileSystemException;
+import java.sql.SQLException;
 import java.util.List;
 
 import POJO.Employee;
@@ -10,15 +8,15 @@ import POJO.Employee;
 public interface EmployeeDao {
 	
 	// Read - fetch all books
-		List<Employee> fetchAllEmployees()throws FileSystemException, FileNotFoundException;
+		List<Employee> fetchAllEmployees()throws SQLException, ClassNotFoundException;
 		// Create
-		Employee addEmployee(Employee employee)throws FileSystemException;
+		Employee addEmployee(Employee employee)throws SQLException;
 		// Update
-		Employee updateEmployee(Employee employee)throws FileSystemException;
+		Employee updateEmployee(Employee employee)throws SQLException;
 		// Delete
-		Employee deleteEmployee(int employeeID)throws FileSystemException;
+		Employee deleteEmployee(int employeeID)throws SQLException;
 		// Read - fetch a employee
-		Employee fetchAEmployee(int employeeID)throws FileSystemException;
+		Employee fetchAEmployee(int employeeID)throws SQLException;
 		
 		
 		
@@ -26,7 +24,7 @@ public interface EmployeeDao {
 		
 		
 		//Exit
-		default void exitApplication()throws FileSystemException{
+		default void exitApplication()throws SQLException{
 			DBConnection.closeConnection();
 		}
 		
