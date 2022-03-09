@@ -65,9 +65,9 @@ public class Project1Main {
 		myServer.get("/employeess/{employee_id}", (ctx)->{
 			//retrieve the path param value,specify path param key
 			String empId = ctx.pathParam("empid");
-			//tell service layer to fetch book
+			//tell service layer to fetch employee
 			Employee fetchedEmployee = employeeService.fetchAEmployee(Integer.parseInt(empId));
-			//return book
+			//return employee
 			ctx.json(fetchedEmployee);
 		});
 		//delete an employee
@@ -76,7 +76,7 @@ public class Project1Main {
 			String empId = ctx.pathParam("empid");
 			//tell service layer to delete
 			Employee deletedEmp = employeeService.deleteEmployee(Integer.parseInt(empId));
-			//return book
+			//return employee
 			ctx.json(deletedEmp);});
 		
 		//add a employee
