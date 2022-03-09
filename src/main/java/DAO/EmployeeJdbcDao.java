@@ -36,8 +36,9 @@ public class EmployeeJdbcDao implements EmployeeDao {
 				employeePojo.setEmployeeID(results.getInt(1));
 				employeePojo.setJobTitle(results.getString(2));
 				employeePojo.setFullName(results.getString(3));
-				employeePojo.setEmail(results.getString(4));
-				employeePojo.setPhone(results.getString(5));
+				employeePojo.setLastName(results.getString(4));
+				employeePojo.setEmail(results.getString(5));
+				employeePojo.setPhone(results.getString(6));
 						
 					
 				// add the employeePojo object to the collection
@@ -123,8 +124,9 @@ public class EmployeeJdbcDao implements EmployeeDao {
 						fetchEmp.setEmployeeID(results.getInt(1));
 						fetchEmp.setJobTitle(results.getString(2));
 						fetchEmp.setFullName(results.getString(3));
-						fetchEmp.setEmail(results.getString(4));
-						fetchEmp.setPhone(results.getString(5));
+						fetchEmp.setLastName(results.getString(4));
+						fetchEmp.setEmail(results.getString(5));
+						fetchEmp.setPhone(results.getString(6));
 			}
 		} catch (SQLException e) {
 			throw new ClosedFileSystemException();
