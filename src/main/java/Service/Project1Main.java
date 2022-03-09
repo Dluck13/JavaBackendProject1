@@ -8,6 +8,7 @@ import io.javalin.Javalin;
 
 
 public class Project1Main {
+	static EmployeeService employeeService = new EmployeeServiceImpl();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -52,35 +53,35 @@ public class Project1Main {
 		
 		
 		
-		EmployeeService employeeService = new EmployeeServiceImpl();
+		
 		
 		
 		// all employees
-		myServer.get("/employeess", (ctx)->{
+		myServer.get("/AllEmployees", (ctx)->{
 			List<Employee> allEmployees = employeeService.fetchAllEmployees();
 			ctx.json(allEmployees);
 		});
 		
 		//fetch employee
-		myServer.get("/employeess/{employee_id}", (ctx)->{
+		myServer.get("/FetchEmployee/{employee_id}", (ctx)->{
 			//retrieve the path param value,specify path param key
 			String empId = ctx.pathParam("empid");
 			//tell service layer to fetch employee
 			Employee fetchedEmployee = employeeService.fetchAEmployee(Integer.parseInt(empId));
-			//return employee
+			//return
 			ctx.json(fetchedEmployee);
 		});
 		//delete an employee
-		myServer.delete("/employeess/{employee_id}", (ctx)->{
+		myServer.delete("/DeleteEmployees/{employee_id}", (ctx)->{
 			//retrieve the path param value,specify path param key
 			String empId = ctx.pathParam("empid");
 			//tell service layer to delete
 			Employee deletedEmp = employeeService.deleteEmployee(Integer.parseInt(empId));
-			//return employee
+			//return 
 			ctx.json(deletedEmp);});
 		
 		//add a employee
-		myServer.post("/employeess", (ctx)->{
+		myServer.post("/AddEmployees", (ctx)->{
 			//converts json to pojo
 		Employee newEmp = ctx.bodyAsClass(Employee.class);
 		Employee returnedEmp = employeeService.addEmployee(newEmp);
@@ -89,7 +90,7 @@ public class Project1Main {
 		
 		//update a 
 		
-		myServer.put("/emps", (ctx)->{
+		myServer.put("/UpdateEmployees", (ctx)->{
 			
 		Employee newUpdate = ctx.bodyAsClass(Employee.class);
 		Employee returnedUpdate = employeeService.updateEmployee(newUpdate);
