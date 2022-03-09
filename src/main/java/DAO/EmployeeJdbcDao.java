@@ -45,6 +45,7 @@ public class EmployeeJdbcDao implements EmployeeDao {
 				allEmployees.add(employeePojo);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new ClosedFileSystemException();
 		}
 		if(allEmployees.isEmpty()) {

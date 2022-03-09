@@ -1,0 +1,28 @@
+2022-03-09 15:52:31 INFO  EmployeeJdbcDao:21 - Entered fetchAllEmployees() in DAO
+2022-03-09 15:52:31 INFO  DBConnection:24 - Estabilishing DB connection
+2022-03-09 15:53:21 INFO  FinanceManagerDao:166 - in getAllEmployees Dao Layer
+2022-03-09 15:53:21 INFO  FinanceManagerDao:202 - in getRoles Dao Layer
+2022-03-09 15:53:21 INFO  FinanceManagerDao:202 - in getRoles Dao Layer
+2022-03-09 15:53:21 INFO  FinanceManagerDao:202 - in getRoles Dao Layer
+2022-03-09 15:53:21 INFO  FinanceManagerDao:202 - in getRoles Dao Layer
+2022-03-09 15:55:18 INFO  EmployeeJdbcDao:21 - Entered fetchAllEmployees() in DAO
+2022-03-09 15:55:18 INFO  DBConnection:24 - Estabilishing DB connection
+2022-03-09 17:27:38 INFO  FinanceManagerDao:165 - in getAllEmployees Dao Layer
+2022-03-09 17:27:38 INFO  DBConnection:24 - Estabilishing DB connection
+2022-03-09 17:27:39 INFO  FinanceManagerDao:201 - in getRoles Dao Layer
+2022-03-09 17:27:39 INFO  FinanceManagerDao:201 - in getRoles Dao Layer
+2022-03-09 17:27:39 INFO  FinanceManagerDao:201 - in getRoles Dao Layer
+2022-03-09 17:27:39 INFO  FinanceManagerDao:201 - in getRoles Dao Layer
+2022-03-09 17:28:08 INFO  EmployeeJdbcDao:23 - Entered fetchAllEmployees() in DAO
+2022-03-09 17:28:08 INFO  DBConnection:24 - Estabilishing DB connection
+2022-03-09 17:28:08 INFO  EmployeeJdbcDao:55 - Exited fetchAllEmployees() in DAO
+2022-03-09 17:34:49 INFO  EmployeeJdbcDao:23 - Entered fetchAllEmployees() in DAO
+2022-03-09 17:34:49 INFO  EmployeeJdbcDao:55 - Exited fetchAllEmployees() in DAO
+2022-03-09 17:34:58 INFO  EmployeeJdbcDao:23 - Entered fetchAllEmployees() in DAO
+2022-03-09 17:34:58 INFO  EmployeeJdbcDao:55 - Exited fetchAllEmployees() in DAO
+2022-03-09 17:35:15 INFO  EmployeeJdbcDao:23 - Entered fetchAllEmployees() in DAO
+2022-03-09 17:35:15 INFO  DBConnection:24 - Estabilishing DB connection
+2022-03-09 17:35:15 INFO  EmployeeJdbcDao:55 - Exited fetchAllEmployees() in DAO
+2022-03-09 17:38:02 INFO  EmployeeJdbcDao:23 - Entered fetchAllEmployees() in DAO
+2022-03-09 17:38:02 INFO  DBConnection:24 - Estabilishing DB connection
+2022-03-09 17:38:02 INFO  EmployeeJdbcDao:55 - Exited fetchAllEmployees() in DAO
