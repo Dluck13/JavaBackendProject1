@@ -18,8 +18,7 @@ public class LoginService {
 		}
 		catch(Exception ex)
 		{
-			log.warn("attempted to get user that doesnt exist");
-			//ex.printStackTrace();
+			log.warn("attempted to get user that doesnt exist" + ex.getMessage());
 			return e;
 		}
 	}
