@@ -56,13 +56,13 @@ public class Project1Main {
 		
 		
 		
-		// all employees
-		myServer.get("/AllEmployees", (ctx)->{
-		ctx.json(employeeService.fetchAllEmployees());
-		});
+//		// all employees
+//		myServer.get("/AllEmployees", (ctx)->{
+//		ctx.json(employeeService.fetchAllEmployees());
+//		});
 		
 		//fetch employee
-		myServer.get("/FetchEmployee/{employee_id}", (ctx)->{
+		myServer.get("/GetEmployee/{employee_id}", (ctx)->{
 			//retrieve the path param value,specify path param key
 			String empId = ctx.pathParam("employee_id");
 			//tell service layer to fetch employee
