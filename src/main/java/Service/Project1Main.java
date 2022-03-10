@@ -57,10 +57,10 @@ public class Project1Main {
 		
 		
 		
-//		// all employees
-//		myServer.get("/AllEmployees", (ctx)->{
-//		ctx.json(employeeService.fetchAllEmployees());
-//		});
+		// all employees
+		myServer.get("/AllEmployees", (ctx)->{
+		ctx.json(employeeService.fetchAllEmployees());
+		});
 		
 		//fetch employee
 		myServer.get("/GetEmployee/{employee_id}", (ctx)->{
