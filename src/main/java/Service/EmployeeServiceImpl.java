@@ -5,6 +5,8 @@ import java.nio.file.FileSystemException;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.postgresql.util.PSQLException;
+
 import DAO.EmployeeDao;
 import DAO.EmployeeJdbcDao;
 import POJO.Employee;
