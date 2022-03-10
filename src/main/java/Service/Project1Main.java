@@ -35,7 +35,7 @@ public class Project1Main {
 			
 		});
 		
-		myServer.get("/AllEmployees", (ctx)-> {
+		myServer.get("/AllEmployeesManagerView", (ctx)-> {
 			ctx.json(FinanceManagerService.getAllEmployees());
 			
 		});
