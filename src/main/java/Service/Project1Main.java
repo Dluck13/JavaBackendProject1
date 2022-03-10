@@ -46,7 +46,7 @@ public class Project1Main {
 			ctx.json(FinanceManagerService.updateReimbursement(rUpdate));
 		});
 		
-		myServer.get("/Login", (ctx)->{
+		myServer.post("/Login", (ctx)->{
 			Employee e = ctx.bodyAsClass(Employee.class);
 			ctx.json(LoginService.login(e));
 		});
