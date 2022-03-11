@@ -66,10 +66,15 @@ public class Project1Main {
 		// all employees
 		myServer.get("/AllEmployees", (ctx)->{
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ctx.json(employeeService.fetchAllEmployees());
 		});
 		
 		
+=======
+		ctx.json(employeeService.fetchAllEmployees());
+		});
+>>>>>>> 9a96bb275ca73e90a1d9350e57e9305e3a8762a9
 =======
 		ctx.json(employeeService.fetchAllEmployees());
 		});
