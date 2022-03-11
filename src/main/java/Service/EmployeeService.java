@@ -1,23 +1,23 @@
 package Service;
 
-import java.io.FileNotFoundException;
-import java.nio.file.FileSystemException;
 import java.util.List;
 
 import DAO.DBConnection;
 import POJO.Employee;
+import exception.EmployeeNotFoundException;
+import exception.SystemException;
 
 public interface EmployeeService {
 	// Read - fetch all books
-			List<Employee> fetchAllEmployees()throws FileSystemException, FileNotFoundException;
+			List<Employee> fetchAllEmployees()throws SystemException, EmployeeNotFoundException;
 			// Create
-			Employee addEmployee(Employee employee)throws FileSystemException;
+			Employee addEmployee(Employee employee)throws SystemException;
 			// Update
-			Employee updateEmployee(Employee employee)throws FileSystemException;
+			Employee updateEmployee(Employee employee)throws SystemException;
 			// Delete
-			Employee deleteEmployee(int employeeID)throws FileSystemException;
+			Employee deleteEmployee(int employeeID)throws SystemException;
 			// Read - fetch a employee
-			Employee fetchAEmployee(int employeeID)throws FileSystemException;
+			Employee fetchAEmployee(int employeeID)throws SystemException;
 			
 			
 			
@@ -25,7 +25,7 @@ public interface EmployeeService {
 			
 			
 			//Exit
-			default void exitApplication()throws FileSystemException{
+			default void exitApplication()throws SystemException{
 				DBConnection.closeConnection();
 			}
 
