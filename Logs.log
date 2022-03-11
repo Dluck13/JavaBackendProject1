@@ -466,3 +466,16 @@
 2022-03-11 10:24:40 INFO  EmployeeJdbcDao:23 - Entered fetchAllEmployees() in DAO
 2022-03-11 10:24:40 INFO  EmployeeJdbcDao:55 - Exited fetchAllEmployees() in DAO
 2022-03-11 10:24:51 INFO  EmployeeJdbcDao:62 - Entered addEmployee() in DAO
+2022-03-11 10:44:18 INFO  EmployeeJdbcDao:23 - Entered fetchAllEmployees() in DAO
+2022-03-11 10:44:18 INFO  EmployeeJdbcDao:55 - Exited fetchAllEmployees() in DAO
+2022-03-11 10:50:02 INFO  LoginDao:32 - in getAllEmployees Dao Layer
+2022-03-11 10:50:02 INFO  LoginDao:70 - in getRoles Dao Layer
+2022-03-11 10:50:02 INFO  LoginDao:32 - in getAllEmployees Dao Layer
+2022-03-11 10:50:02 INFO  LoginDao:70 - in getRoles Dao Layer
+2022-03-11 10:50:02 INFO  EmployeeJdbcDao:23 - Entered fetchAllEmployees() in DAO
+2022-03-11 10:50:02 INFO  EmployeeJdbcDao:55 - Exited fetchAllEmployees() in DAO
+2022-03-11 10:50:13 INFO  EmployeeJdbcDao:83 - Entered updateEmployee() in DAO
+2022-03-11 10:50:13 INFO  EmployeeJdbcDao:92 - Exited updateBook() in DAO
+2022-03-11 10:50:13 INFO  EmployeeJdbcDao:23 - Entered fetchAllEmployees() in DAO
+2022-03-11 10:50:13 INFO  EmployeeJdbcDao:55 - Exited fetchAllEmployees() in DAO
+2022-03-11 10:51:05 INFO  EmployeeJdbcDao:62 - Entered addEmployee() in DAO
