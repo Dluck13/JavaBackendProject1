@@ -1,15 +1,9 @@
 package Service;
 
-import java.nio.file.ClosedFileSystemException;
-import java.time.LocalDateTime;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import POJO.Employee;
 import POJO.Reimbursement;
-import exception.EmployeeNotFoundException;
-import exception.SystemException;
 import io.javalin.Javalin;
 
 
@@ -65,49 +59,26 @@ public class Project1Main {
 		
 		// all employees
 		myServer.get("/AllEmployees", (ctx)->{
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	ctx.json(employeeService.fetchAllEmployees());
-		});
-		
-		
-=======
 		ctx.json(employeeService.fetchAllEmployees());
 		});
->>>>>>> 9a96bb275ca73e90a1d9350e57e9305e3a8762a9
-=======
-		ctx.json(employeeService.fetchAllEmployees());
-		});
->>>>>>> 9a96bb275ca73e90a1d9350e57e9305e3a8762a9
-=======
-		ctx.json(employeeService.fetchAllEmployees());
-		});
->>>>>>> 9a96bb275ca73e90a1d9350e57e9305e3a8762a9
-=======
-		ctx.json(employeeService.fetchAllEmployees());
-		});
->>>>>>> 9a96bb275ca73e90a1d9350e57e9305e3a8762a9
-=======
-		ctx.json(employeeService.fetchAllEmployees());
-		});
->>>>>>> 9a96bb275ca73e90a1d9350e57e9305e3a8762a9
 		
 		//fetch employee
-		myServer.get("/AllEmployees/{bid}", (ctx)->{
-			String empId = ctx.pathParam("bid");
-		ctx.json(employeeService.fetchAEmployee(Integer.parseInt(empId)));
-		});
-
-		//delete an employee
-		myServer.delete("/DeleteEmployees/{bid1}", (ctx)->{
+		myServer.get("/GetEmployee/{employee_id}", (ctx)->{
 			//retrieve the path param value,specify path param key
-			String empId = ctx.pathParam("bid1");
+			String empId = ctx.pathParam("employee_id");
+			//tell service layer to fetch employee
+			Employee fetchedEmployee = employeeService.fetchAEmployee(Integer.parseInt(empId));
+			//return
+			ctx.json(fetchedEmployee);
+		});
+		//delete an employee
+		myServer.delete("/DeleteEmployees/{employee_id}", (ctx)->{
+			//retrieve the path param value,specify path param key
+			String empId = ctx.pathParam("employee_id");
 			//tell service layer to delete
+			Employee deletedEmp = employeeService.deleteEmployee(Integer.parseInt(empId));
 			//return 
-			ctx.json(employeeService.deleteEmployee(Integer.parseInt(empId)));});
+			ctx.json(deletedEmp);});
 		
 		//add a employee
 		myServer.post("/AddEmployees", (ctx)->{
@@ -125,26 +96,6 @@ public class Project1Main {
 		Employee returnedUpdate = employeeService.updateEmployee(newUpdate);
 		ctx.json(returnedUpdate);
 		});
-		
-		// this is the catch block for SystemException
-				myServer.exception(SystemException.class,(se, ctx)->{
-					Map<String, String> error = new HashMap<String, String>();
-					error.put("message", se.getMessage());
-					error.put("datetime", LocalDateTime.now()+"");
-					ctx.json(error);
-				} );
-				
-				myServer.exception(EmployeeNotFoundException.class,(ee, ctx)->{
-					Map<String, String> error = new HashMap<String, String>();
-					error.put("message", ee.getMessage());
-					error.put("datetime", LocalDateTime.now()+"");
-					ctx.json(error);
-				} );
-				
-			
-				
-				
-				
 		
 		
 		
