@@ -70,6 +70,7 @@ public class EmployeeJdbcDao implements EmployeeDao {
 			}
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new ClosedFileSystemException();
 		}
 		LOG.info("Exited addEmployee() in DAO");
